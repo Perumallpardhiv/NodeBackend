@@ -17,6 +17,7 @@ const userSchema = new Schema({
     },
 });
 
+// Encrypting Password
 userSchema.pre('save', async function(){
     try {
         var user = this;
@@ -26,7 +27,16 @@ userSchema.pre('save', async function(){
     } catch (error) {
         throw error
     }
-})
+});
+
+userSchema.methods.comparePwd = async function(userPwd){
+    try {
+        const isMatch = await bcrypt.compare(userPwd, this.password);
+        return isMatch;
+    } catch (e) {
+        throw e;
+    }
+};
 
 const UserModel = db.model('user', userSchema);
 

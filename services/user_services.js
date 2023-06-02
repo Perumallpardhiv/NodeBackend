@@ -1,4 +1,5 @@
 const UserModel = require('../model/user_model');
+const jwt = require('jsonwebtoken');
 
 class UserService {
     static async registerUser(email, password) {
@@ -10,6 +11,18 @@ class UserService {
         } catch (e) {
             throw e;
         }
+    }
+
+    static async checkUser(email){
+        try {
+            return await UserModel.findOne({email});
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    static async generateToken(tokenData, secretKey, jwt_expire){
+        return jwt.sign(tokenData, secretKey, {expiresIn: jwt_expire});
     }
 }
 
