@@ -12,3 +12,16 @@ exports.createTodo = async (req,res,next)=>{
         throw e;
     }
 }
+
+exports.userAllTodos = async (req,res,next)=>{
+    try{
+        const {userId} = req.body;
+        let todo = await TodoService.userAllTodos(userId);
+
+        res.json({status:true, success:todo});
+        console.log("Got all TODO\'s");
+    } catch (e){
+        console.log("Not found todos");
+        throw e;
+    }
+}

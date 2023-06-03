@@ -9,6 +9,15 @@ class TodoService {
             throw e;
         }
     }
+
+    static async userAllTodos(userId){
+        try {
+            const userTodos = await TodoModel.find({userId});
+            return userTodos;
+        } catch (e) {
+            throw e;
+        }
+    }    
 }
 
 module.exports = TodoService;
