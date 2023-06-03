@@ -17,7 +17,16 @@ class TodoService {
         } catch (e) {
             throw e;
         }
-    }    
+    }
+
+    static async deleteTodo(id){
+        try {
+            const deleted = await TodoModel.findOneAndDelete({_id:id});
+            return deleted;
+        } catch (e) {
+            throw e;
+        }
+    }
 }
 
 module.exports = TodoService;

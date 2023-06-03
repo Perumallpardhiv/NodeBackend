@@ -4,6 +4,8 @@ const TodoContoller = require('../controller/todo_controller');
 
 router.post('/storeTodo', TodoContoller.createTodo);
 
-router.get('/getUserallTodoList', TodoContoller.userAllTodos);
+router.post('/getUserallTodoList', TodoContoller.userAllTodos);
+
+router.post('/deleteTodo', TodoContoller.deleteTodo);
 
 module.exports = router;

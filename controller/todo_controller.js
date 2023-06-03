@@ -25,3 +25,16 @@ exports.userAllTodos = async (req,res,next)=>{
         throw e;
     }
 }
+
+exports.deleteTodo = async (req,res,next) => {
+    try {
+        const {id} = req.body;
+        let deleted = await TodoService.deleteTodo(id);     
+        
+        res.json({status:true, success:deleted});
+        console.log("Deleted");
+    } catch (e) {
+        console.log("Not Deleted");
+        throw e;
+    }
+}
